@@ -9,14 +9,14 @@ let idTarefaEdicao = document.querySelector ('#idTarefaEdicao');
 let inputTarefaNomeEdicao = document.querySelector('#inputTarefaNomeEdicao');
 
 inputNovaTarefa.addEventListener('keypress', (e) => {
-  
+
     if(e.keyCode == 13) {
         let tarefa = {
             nome: inputNovaTarefa.value,
             id: gerarId(),
         }
 
-        adicionarTarefa(tarefa);
+        adicionartarefakeypress(tarefa);
     }
 });
 
@@ -60,6 +60,16 @@ btnAtualizarTarefa.addEventListener('click', (e) => {
 
 function gerarId() {
     return Math.floor(Math.random() * 3000);
+}
+
+function adicionartarefakeypress(tarefa) {
+    let li = criarTagLI(tarefa);
+    if(inputNovaTarefa.value === "") {
+        alert("Campo vazio")
+    } else {
+        listaTarefas.appendChild(li);
+        inputNovaTarefa.value = '';
+    }
 }
 
 function adicionarTarefa(tarefa) {
